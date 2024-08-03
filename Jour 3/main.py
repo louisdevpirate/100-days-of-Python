@@ -7,15 +7,16 @@ def randomize():
 # Nombre aléatoire contenu dans la variable result
 result = randomize()
 
-# Préparation de la variable game pour la boucle While et création des tentatives
-game = True
+# Préparation de la boucle While et création des tentatives
 attempts = 0
+# Attribution du nombre maximum de tentatives
+max_attempts= 20
 
 # Message de bienvenue
 print("\nBienvenue dans le jeu de euh...deviner le nombre entre 1 et 100 ! Cool non ? Bon alors voici les règles : \n...\nEst ce que j'ai vraiment besoin de t'expliquer les règles de ce jeu ? Sérieusement ?\n\nBon aller, sans plus attendre, commençons !\n")
 
 # Le jeu s'arrête une fois la bonne réponse trouvée ou quand plus de tentatives restantes
-while game and attempts < 10:
+while attempts < max_attempts :
     try:
         guess = int(input("Choisis un nombre entre 1 et 100 : "))
 
@@ -36,7 +37,7 @@ while game and attempts < 10:
         # Message de victoire pour le joueur
         elif guess == result:
             print(f"\nBien joué. T'es trop fort, tu as trouvé en {attempts} tentatives ! \n(J'aurais sûrement fait mieux...mais bravo à toi !)")
-            game = False
+            break
 
         # Message d'échec quand l'utilisateur a cramé toutes ses tentatives
         elif attempts == 10:
