@@ -2,16 +2,19 @@
 import random
 import string
 
+# Constantes pour valeur minimales et maximales
+MIN_LENGTH = 12
+MAX_LENGTH = 50
 
 # Création d'une fonction qui génère une chaîne de caractères aléatoires (la longueur par défaut est 12)
-def generate(longueur=12):
+def generate(longueur=MIN_LENGTH):
     # La longueur du mot de passe ne peut pas être inférieure à 12 caractères
-    while longueur < 12:
+    while longueur < MIN_LENGTH:
         print("\nAbuse pas mec, au moins 12 caractères, sinon tu vas te faire hacker\n")
         longueur = int(input("Aller retente une longueur convenable : "))
 
     # La longueur du mot de passe ne peut pas être supérieure à 50 caractères
-    while longueur > 50:
+    while longueur > MAX_LENGTH:
         print("\nBon t'es pas à la NASA, reste tranquille\n")
         longueur = int(input("Aller retente une longueur convenable : "))
 
@@ -45,12 +48,20 @@ def generate(longueur=12):
 
 
 # On demande à l'utilisateur combien de caractères il souhaite pour son mot de passe
-user_input = input("Combien de caractères tu veux pour ton mot de passe ? (Appuyez sur Entrée pour la valeur par défaut) ")
+while True:
+    user_input = input(
+        f"Combien de caractères tu veux pour ton mot de passe ? (Appuyez sur Entrée pour la valeur par défaut de {MIN_LENGTH}) ")
 
-if user_input == "":
-    random_password = generate()  # Utilise la valeur par défaut
-else:
-    random_password = generate(int(user_input))
+    if user_input == "":
+        random_password = generate()  # Utilise la valeur par défaut
+        break
+    else:
+        try:
+            length = int(user_input)
+            random_password = generate(length)
+            break
+        except ValueError:
+            print("Oups ! Ce n'est pas un nombre valide. Essaie encore.")
 
 print(random_password)
 print(f"(longueur : {len(random_password)} caractères)")
