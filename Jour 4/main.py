@@ -2,6 +2,7 @@
 import random
 import string
 
+
 # Création d'une fonction qui génère une chaîne de caractères aléatoires
 def generate(longueur):
     # La longueur du mot de passe ne peut pas être inférieure à 12 caractères
