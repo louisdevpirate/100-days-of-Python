@@ -45,6 +45,12 @@ def generate(longueur=12):
 
 
 # On demande à l'utilisateur combien de caractères il souhaite pour son mot de passe
-password_lenght = generate(int(input("Combien de caractères tu veux pour ton mot de passe ? ")))
+user_input = input("Combien de caractères tu veux pour ton mot de passe ? (Appuyez sur Entrée pour la valeur par défaut) ")
 
-print(password_lenght)
+if user_input == "":
+    random_password = generate()  # Utilise la valeur par défaut
+else:
+    random_password = generate(int(user_input))
+
+print(random_password)
+print(f"(longueur : {len(random_password)} caractères)")
