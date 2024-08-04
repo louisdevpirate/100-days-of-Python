@@ -3,8 +3,8 @@ import random
 import string
 
 
-# Création d'une fonction qui génère une chaîne de caractères aléatoires
-def generate(longueur):
+# Création d'une fonction qui génère une chaîne de caractères aléatoires (la longueur par défaut est 12)
+def generate(longueur=12):
     # La longueur du mot de passe ne peut pas être inférieure à 12 caractères
     while longueur < 12:
         print("\nAbuse pas mec, au moins 12 caractères, sinon tu vas te faire hacker\n")
