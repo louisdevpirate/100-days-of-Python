@@ -6,7 +6,7 @@ import re
 def main():
     try:
         # Ouvre et lit le contenu du fichier 'planning.txt'
-        with open('planning.txt', 'r') as fichier:
+        with open('fichier.txt', 'r') as fichier:
             content = fichier.read()
         # Extrait les mots du contenu
         words = extract_words(content)
