@@ -1,39 +1,19 @@
 def addition(first_number, second_number):
-    result = first_number + second_number
-    print(f"Le résultat est : {result}")
+    return first_number + second_number
 
 
 def soustraction(first_number, second_number):
-    result = first_number - second_number
-    print(f"Le résultat est : {result}")
-
-
-def division():
-    while True:
-        try:
-            first_number = float(input("Entrez le premier nombre : "))
-            second_number = float(input("Entrez le deuxième nombre : "))
-            if second_number == 0:
-                print("Division par 0 impossible. Veuillez entrer un diviseur non nul.")
-                continue
-            result = first_number / second_number
-            print(f"Le résultat est : {result}")
-            break
-        except ValueError:
-            print("Veuillez entrer des nombres valides.")
+    return first_number - second_number
 
 
 def multiplication(first_number, second_number):
-    result = first_number * second_number
-    print(f"Le résultat est : {result}")
+    return first_number * second_number
 
 
-while True:
-    operation = input("Quelle opération souhaitez-vous effectuer ? Addition/Soustraction/Multiplication/Division\nEntrez votre réponse ici : ").lower()
-    if operation in ["addition", "soustraction", "multiplication", "division"]:
-        break
-    else:
-        print("\nOpération non valide. Veuillez réessayer.\n")
+def division(first_number, second_number):
+    if second_number == 0:
+        return "Division par 0 impossible."
+    return first_number / second_number
 
 
 def get_number(prompt):
@@ -44,5 +24,31 @@ def get_number(prompt):
             print("Veuillez entrer un nombre valide.")
 
 
-number1 = get_number("\nChoisissez un premier nombre : ")
-number2 = get_number("\nChoisissez un deuxième nombre : ")
+operations = {
+    "addition": addition,
+    "soustraction": soustraction,
+    "division": division,
+    "multiplication": multiplication
+}
+
+
+while True:
+    operation = input("\nQuelle opération souhaitez-vous effectuer ? Addition/Soustraction/Multiplication/Division\nEntrez votre réponse ici : ").lower()
+
+    if operation in operations:
+        number1 = get_number("\nChoisissez un premier nombre : ")
+        number2 = get_number("\nChoisissez un deuxième nombre : ")
+
+        result = operations[operation](number1, number2)
+        print(f"\nLe résultat est {result}")
+
+        if input("\nVoulez vous exécuter un autre calcul ? Oui/Non : ").lower() != 'oui':
+            break
+
+    else:
+        print("\nOpération non valide. Veuillez réessayer.\n")
+
+
+
+
+
