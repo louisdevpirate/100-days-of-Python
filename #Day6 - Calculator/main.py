@@ -40,6 +40,7 @@ while True:
         number2 = get_number("\nChoisissez un deuxième nombre : ")
 
         result = operations[operation](number1, number2)
+
         print(f"\nLe résultat est {result}")
 
         if input("\nVoulez vous exécuter un autre calcul ? Oui/Non : ").lower() != 'oui':

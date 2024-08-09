@@ -1,4 +1,4 @@
-# Jour 5 : Créez un programme qui lit un fichier texte, compte le nombre d'occurrences de chaque mot et affiche les 5 mots les plus fréquents.
+# #Day5 - Top Words Appearance in Txt file : Créez un programme qui lit un fichier texte, compte le nombre d'occurrences de chaque mot et affiche les 5 mots les plus fréquents.
 
 import re
 

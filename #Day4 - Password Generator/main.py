@@ -1,4 +1,4 @@
-# Jour 4 : Écrivez un programme qui génère un mot de passe aléatoire d'une longueur donnée, contenant des lettres majuscules, minuscules, des chiffres et des caractères spéciaux.
+# #Day4 - Password Generator : Écrivez un programme qui génère un mot de passe aléatoire d'une longueur donnée, contenant des lettres majuscules, minuscules, des chiffres et des caractères spéciaux.
 import random
 import string
 
