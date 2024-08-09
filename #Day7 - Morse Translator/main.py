@@ -11,10 +11,20 @@ morse_encode = {
 }
 
 # Dictionnaire pour décoder (morse vers lettre)
+# Inverse le dictionnaire morse_encode pour créer morse_decode
 morse_decode = {value: key for key, value in morse_encode.items()}
 
 
 def encode_to_morse(sentence):
+    """
+    Encode une phrase en code morse.
+
+    Args:
+        sentence (str): La phrase à encoder.
+
+    Returns:
+        str: La phrase encodée en morse.
+    """
     morse_message = []
     for character in sentence:
         if character in morse_encode:
@@ -27,6 +37,15 @@ def encode_to_morse(sentence):
 
 
 def decode_to_letters(morse):
+    """
+    Décode un message en code morse vers des lettres.
+
+    Args:
+        morse (str): Le message en code morse à décoder.
+
+    Returns:
+        str: Le message décodé en lettres.
+    """
     words = morse.split('   ')  # 3 espaces entre les mots
     decoded_words = []
     for word in words:
@@ -35,8 +54,10 @@ def decode_to_letters(morse):
     return ' '.join(decoded_words)
 
 
+# Boucle principale du programme
 while True:
     try:
+        # Demande à l'utilisateur de choisir une action
         selection = input("Voulez vous encoder ou décoder un message ? (Encoder/Décoder/Quitter)\n").lower()
 
         if selection == 'quitter':
@@ -44,26 +65,25 @@ while True:
             break
 
         elif selection == 'encoder':
+            # Encodage d'un message
             encode = input("Entrez votre message à traduire en morse : ").upper()
             result = encode_to_morse(encode)
             print("Message en morse :", result)
 
         elif selection == 'decoder' or selection == 'décoder':
+            # Décodage d'un message
             decode = input("Entrez votre message à traduire depuis le morse : ")
             result = decode_to_letters(decode)
             print("Message en lettres :", result)
 
         else:
+            # Gestion des entrées non valides
             print("Option non reconnue. Veuillez choisir 'Encoder', 'Décoder' ou 'Quitter'.\n")
             continue
 
     except Exception as e:
+        # Gestion des erreurs générales
         print(f"Une erreur s'est produite : {e}")
         print("Essayons à nouveau.")
 
     print("\n")  # Ligne vide pour plus de clarté entre les itérations
-
-
-
-
-
