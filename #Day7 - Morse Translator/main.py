@@ -7,7 +7,7 @@ morse_encode = {
     'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--',
     'Z': '--..', '0': '-----', '1': '.----', '2': '..---', '3': '...--',
     '4': '....-', '5': '.....', '6': '-....', '7': '--...', '8': '---..',
-    '9': '----.', ' ': '/'  # Espace pour séparer les mots
+    '9': '----.', ' ': ' '  # Espace pour séparer les mots
 }
 
 # Dictionnaire pour décoder (morse vers lettre)
@@ -27,15 +27,12 @@ def encode_to_morse(sentence):
 
 
 def decode_to_letters(morse):
-    letters_message = []
-    morse_characters = morse.split()  # Sépare la chaîne en caractères morse individuels
-    for character in morse_characters:
-        if character in morse_decode:
-            letters_message.append(morse_decode[character])
-        else:
-            letters_message.append('?')  # Pour les caractères non reconnus
-
-    return ''.join(letters_message)  # Joindre sans espace entre les lettres
+    words = morse.split('   ')  # 3 espaces entre les mots
+    decoded_words = []
+    for word in words:
+        decoded_word = ''.join(morse_decode.get(char, '?') for char in word.split())
+        decoded_words.append(decoded_word)
+    return ' '.join(decoded_words)
 
 
 while True:
