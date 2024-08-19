@@ -122,7 +122,12 @@ class Dealer(Participant):
         Returns:
             str: Une chaîne représentant la main partielle du croupier.
         """
-        return f"{self.cards[0]} **"
+        if not self.cards:
+            return "Pas de cartes"
+        elif len(self.cards) == 1:
+            return f"{self.cards[0]}"
+        else:
+            return f"{self.cards[0]} **"
 
     def should_draw(self):
         """
