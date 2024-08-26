@@ -3,7 +3,7 @@ import random
 
 def create_list():
     random_list = []
-    for i in range(20):
+    for _ in range(20):
         random_list.append(random.randint(0, 100))
     return random_list
 
@@ -15,7 +15,6 @@ def number_to_search():
             return nombre_a_chercher
         except ValueError:
             print("Non c'est pas bon, ce n'est pas un nombre entier")
-            continue
 
 
 def binary_search(list, input):
@@ -34,15 +33,32 @@ def binary_search(list, input):
     return -1
 
 
+def ask_continue():
+    while True:
+        response = input("Voulez-vous faire une nouvelle recherche ? (oui/non) : ").lower().strip()
+        if response in ['oui', 'non']:
+            return response == 'oui'
+        print("Veuillez répondre par 'oui' ou 'non'.")
+
+
+def main():
+    while True:
+        liste = create_list()
+        liste.sort()
+        print("Liste générée et triée :", liste)
+
+        nombre = number_to_search()
+        resultat = binary_search(liste, nombre)
+
+        if resultat != -1:
+            print(f"Le nombre {nombre} a été trouvé à l'index {resultat}")
+        else:
+            print(f"Le nombre {nombre} n'est pas dans la liste")
+
+        if not ask_continue():
+            print("Merci d'avoir utilisé ce programme. Au revoir !")
+            break
+
+
 if __name__ == "__main__":
-    liste = create_list()
-    liste.sort()  # On trie la liste
-    print("Liste générée et triée :", liste)
-
-    nombre = number_to_search()
-    resultat = binary_search(liste, nombre)
-
-    if resultat != -1:
-        print(f"Le nombre {nombre} a été trouvé à l'index {resultat}")
-    else:
-        print(f"Le nombre {nombre} n'est pas dans la liste")
+    main()
