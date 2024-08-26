@@ -1,11 +1,19 @@
 import random
 
 
-def create_list():
-    random_list = []
-    for _ in range(20):
-        random_list.append(random.randint(0, 100))
-    return random_list
+def get_list_size():
+    while True:
+        try:
+            size = int(input("Entrez la taille de la liste (entre 1 et 100) : "))
+            if 1 <= size <= 100:
+                return size
+            print("La taille doit être entre 1 et 100.")
+        except ValueError:
+            print("Veuillez entrer un nombre entier valide.")
+
+
+def create_list(size):
+    return [random.randint(0, 100) for _ in range(size)]
 
 
 def number_to_search():
@@ -43,21 +51,26 @@ def ask_continue():
 
 def main():
     while True:
-        liste = create_list()
-        liste.sort()
-        print("Liste générée et triée :", liste)
+        try:
+            list_size = get_list_size()
+            liste = create_list(list_size)
+            liste.sort()
+            print("Liste générée et triée :", liste)
 
-        nombre = number_to_search()
-        resultat = binary_search(liste, nombre)
+            nombre = number_to_search()
+            resultat = binary_search(liste, nombre)
 
-        if resultat != -1:
-            print(f"Le nombre {nombre} a été trouvé à l'index {resultat}")
-        else:
-            print(f"Le nombre {nombre} n'est pas dans la liste")
+            if resultat != -1:
+                print(f"Le nombre {nombre} a été trouvé à l'index {resultat}")
+            else:
+                print(f"Le nombre {nombre} n'est pas dans la liste")
 
-        if not ask_continue():
-            print("Merci d'avoir utilisé ce programme. Au revoir !")
-            break
+            if not ask_continue():
+                print("Merci d'avoir utilisé ce programme. Au revoir !")
+                break
+        except Exception as e:
+            print(f"Une erreur inattendue s'est produite : {e}")
+            print("Le programme va redémarrer.")
 
 
 if __name__ == "__main__":
