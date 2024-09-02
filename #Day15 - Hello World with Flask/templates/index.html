@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue</title>
+</head>
+<body>
+    <h1>Bienvenue sur notre site</h1>
+
+    <!-- Affiche un message personnalisé si un nom a été saisi -->
+    {% if name %}
+        <p>Bonjour, {{ name }}! Aujourd'hui nous sommes le {{ date }}.</p>
+    {% else %}
+        <p>Aujourd'hui nous sommes le {{ date }}.</p>
+    {% endif %}
+
+    <!-- Formulaire pour saisir le nom -->
+    <form method="POST">
+        <label for="name">Votre nom :</label>
+        <input type="text" id="name" name="name" required>
+        <button type="submit">Envoyer</button>
+    </form>
+</body>
+</html>

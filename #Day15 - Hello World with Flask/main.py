@@ -1,23 +1,30 @@
-from flask import Flask
+from flask import Flask, render_template, request
 from datetime import datetime
 
 # Création de l'instance de l'application Flask
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def hello_world():
     """
-    Fonction vue pour la route racine ('/').
-    Retourne un message de salutation avec la date actuelle.
+    Gère les requêtes GET et POST pour la route racine ('/').
+    Affiche un formulaire pour saisir un nom et retourne un message de bienvenue personnalisé.
 
     Returns:
-        str: Message de salutation avec la date du jour
+        str: Page HTML rendue avec un message de bienvenue et la date du jour
     """
+    name = None
     # Obtention de la date actuelle et formatage
     current_date = datetime.now().strftime("%Y-%m-%d")
-    # Retourne le message avec la date
-    return f"Hello, World! Aujourd'hui nous sommes le {current_date}."
+
+    # Vérifie si la requête est de type POST (soumission du formulaire)
+    if request.method == 'POST':
+        # Récupère le nom saisi dans le formulaire
+        name = request.form.get('name')
+
+    # Rend le template avec les données appropriées
+    return render_template('index.html', name=name, date=current_date)
 
 
 # Vérifie si le script est exécuté directement (et non importé)
